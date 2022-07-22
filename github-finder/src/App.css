@@ -6,3 +6,8 @@
   width: 300px;
   border-radius: 50%;
 }
+.follow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -6,7 +6,6 @@ function App() {
   const [data, setData] = useState([]);
   const [initialInput, setInput] = useState("");
   const arr = [];
-  //let tempData = {};
 
   /* const search = () => {
     fetch("https://jsonplaceholder.typicode.com/photos/1")
@@ -17,18 +16,13 @@ function App() {
         console.log(json);
       });
   };*/
-
   const search = () => {
     fetch(`https://api.github.com/users/${initialInput}`)
       .then((res) => res.json())
       .then((json) => {
-        console.log(data);
-        //  setData(data);
-
         // arr.push(json);
         // console.log("array", arr);
         setData(json);
-        // let filtered = data.filter((item) => item.avatar_url );
       })
       .catch((e) => {
         console.log(e);
@@ -43,12 +37,22 @@ function App() {
         onChange={(e) => setInput(e.target.value)}
       />
       <input type="button" value="Search" onClick={search} />
-      <p>{data.login}</p>
+      <h5>{data.login}</h5>
       <img className="profile-pic" src={data.avatar_url} />
-      <p>{data.name}</p>
-      <p>{data.bio}</p>
-      {data.followers && <p>Followers: {data.followers}</p>}
-      {data.following && <p>Following: {data.following}</p>}
+      <h4>{data.name}</h4>
+      <h5>{data.bio}</h5>
+      <div className="follow">
+        {data.followers >= 0 && (
+          <h6>
+            <b>{data.followers}</b> Followers .
+          </h6>
+        )}
+        {data.following >= 0 && (
+          <h6>
+            <b>{data.following}</b> Following
+          </h6>
+        )}
+      </div>
 
       <p>{data.location}</p>
       <p>{data.blog}</p>
