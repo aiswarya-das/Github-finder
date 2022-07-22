@@ -18,14 +18,20 @@ function App() {
   };*/
   const search = () => {
     fetch(`https://api.github.com/users/${initialInput}`)
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw new Error("Profile not found!");
+      })
       .then((json) => {
         // arr.push(json);
         // console.log("array", arr);
         setData(json);
       })
       .catch((e) => {
-        console.log(e);
+        console.log("error", e);
+        alert(e);
       });
   };
   return (
