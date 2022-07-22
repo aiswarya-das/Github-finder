@@ -11,3 +11,8 @@
   align-items: center;
   justify-content: center;
 }
+a,
+a:visited {
+  color: #000;
+  text-decoration: none;
+}

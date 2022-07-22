@@ -55,7 +55,7 @@ function App() {
       </div>
 
       <p>{data.location}</p>
-      <p>{data.blog}</p>
+      <a href={data.blog}>{data.blog}</a>
     </section>
   );
 }
