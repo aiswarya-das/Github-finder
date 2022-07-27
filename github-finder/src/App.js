@@ -27,6 +27,7 @@ function App() {
       .then((json) => {
         // arr.push(json);
         // console.log("array", arr);
+        console.log(json.blog);
         setData(json);
       })
       .catch((e) => {
@@ -46,14 +47,14 @@ function App() {
       <h5>{data.login}</h5>
       <img className="profile-pic" src={data.avatar_url} />
       <h4>{data.name}</h4>
-      <h5>{data.bio}</h5>
+      <p>{data.bio}</p>
       <div className="follow">
-        {data.followers >= 0 && (
+        {(data.followers || data.followers >= 0) && (
           <h6>
             <b>{data.followers}</b> Followers .
           </h6>
         )}
-        {data.following >= 0 && (
+        {(data.following || data.following >= 0) && (
           <h6>
             <b>{data.following}</b> Following
           </h6>
@@ -61,7 +62,7 @@ function App() {
       </div>
 
       <p>{data.location}</p>
-      <a href={data.blog}>{data.blog}</a>
+      <a href={`http://${data.blog}`}>{data.blog}</a>
     </section>
   );
 }
